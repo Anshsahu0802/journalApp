@@ -1,0 +1,52 @@
+spring:
+  data:
+    mongodb:
+      uri: mongodb+srv://anshsahu0802:mnias018@cluster0.2akoo.mongodb.net/journalDb?retryWrites=true&w=majority&appName=Cluster0
+      auto-index: true
+  main:
+    allow-circular-references: true
+  application:
+    name: journalApp
+
+  kafka:
+    bootstrap-servers: localhost:9092
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+    consumer:
+      group-id: weekly-sentiment-group
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
+      properties:
+        spring:
+          json:
+            trusted:
+              packages: com.jabs.journalApp.model
+
+
+  redis:
+    host: redis-18895.c301.ap-south-1-1.ec2.redns.redis-cloud.com
+    port: 18895
+    password: zcvXYIsg1ZLGGQBsdezQWZf22fpjk7uV
+
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: anshsahu0802@gmail.com
+    password: aozd yyas gjst wyuf
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+
+server:
+  port: 8080
+  servlet:
+    context-path: /journal
+
+
+weather:
+  api:
+    key: c458f4512bbe737230a4a8aee61910e7
